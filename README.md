@@ -13,6 +13,7 @@ Inicio: 20:00 - 13/05/2026
 
 ## Pedro Henrique Nunes Marchetti 
 ### Tópico 5
+20:49 - add de funções de arvore binária. fim-20:49
 
 ## Rafael Ferreira Lucietto
 ### Tópicos 1 e 4
