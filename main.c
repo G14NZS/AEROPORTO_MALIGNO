@@ -15,7 +15,7 @@ int main()
     while (resposta<0 || resposta>5){
         scanf("%i", &resposta);
         if (resposta<0 || resposta>5){
-            printf("\nNúmero incompatível, tente novamente com os números possíveis:");
+            printf("\nNúmero incompatível, tente novamente com os números possíveis");
             fflush(stdout);
 
             sleep(2.5);
