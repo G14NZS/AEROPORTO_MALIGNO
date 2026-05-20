@@ -17,3 +17,5 @@ Inicio: 20:00 - 13/05/2026
 
 ## Rafael Ferreira Lucietto
 ### Tópicos 1 e 4
+
+Inicio de funções básicas matriz esparsa - 20/05/2026 - 09:00
