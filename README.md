@@ -8,7 +8,7 @@ de uma descrição detalhada do que foi feito
 
 ## Gianluca Prestello Crugel
 ### Tópicos 2 e 3
-Inicio: 20:00 - 13/05/2026
+Inicio: 20:00-21:00  -  13/05/2026
 
 
 ## Pedro Henrique Nunes Marchetti 
