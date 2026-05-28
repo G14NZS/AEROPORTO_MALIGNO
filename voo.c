@@ -72,3 +72,34 @@ Status listarVoosSaindoDe(VetorAeroportos *aeroportos,
 
     return OK;
 }
+
+Status removerVoo(VetorAeroportos *aeroportos,
+                  MatrizEsparsa *malha,
+                  const char *codigoOrigem,
+                  const char *codigoDestino) {
+    if (aeroportos == NULL || malha == NULL ||
+        codigoOrigem == NULL || codigoDestino == NULL) {
+        return ERRO_INVALIDO;
+    }
+
+    int origem = buscarIndiceAeroporto(aeroportos, codigoOrigem);
+    int destino = buscarIndiceAeroporto(aeroportos, codigoDestino);
+
+    if (origem == -1 || destino == -1) {
+        return ERRO_NAO_ENCONTRADO;
+    }
+
+    void *valor = buscarMatriz(malha, origem, destino);
+
+    if (valor == NULL) {
+        return ERRO_NAO_ENCONTRADO;
+    }
+
+    free(valor);
+
+    if (!removerMatriz(malha, origem, destino)) {
+        return ERRO_NAO_ENCONTRADO;
+    }
+
+    return OK;
+}
