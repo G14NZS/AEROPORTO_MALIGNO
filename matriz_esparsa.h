@@ -48,6 +48,9 @@ void liberarMatriz(MatrizEsparsa *m);
  * (util pra passar vetores, contadores, arquivos, etc).
  */
 
+ typedef void (*CallbackMatriz)(int linha, int coluna, void *valor, void *contexto);
+ 
+
 void percorrerMatriz(MatrizEsparsa *m, CallbackMatriz cb, void *contexto);
 
 /* Percorre apenas os elementos de UMA linha especifica. */
