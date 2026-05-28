@@ -104,12 +104,12 @@ int main()
             fflush(stdout);
 
             sleep(2.5);
-            
+
             printf("Escolha uma das opções:\n\n0- Sair\n1- Cadastrar um novo aeroporto\n2- Cadastrar voo (com números de aeroportos)\n3- Remoção de voo (por número)\n4- Listar todos os voos (número e nome da cidade destino) de um aeroporto \n5- Listar possíveis trajetos com ou sem baldeação\n\nResposta: ");
         };
     };
     printf("%i",resposta);
-    
-        
+
+
     return 0;
 }
