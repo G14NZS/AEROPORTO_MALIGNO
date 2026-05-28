@@ -170,6 +170,31 @@ void listarTrajetos(MatrizEsparsa *m, VetorAeroportos *v) {
     printf(">> Funcao de trajetos ainda precisa ser conectada aqui.\n");
 }
 
+void opcaoRemoverVoo(VetorAeroportos *v, MatrizEsparsa *m) {
+    char origem[10];
+    char destino[10];
+
+    printf("\nCodigo do aeroporto de origem: ");
+    scanf("%9s", origem);
+
+    printf("Codigo do aeroporto de destino: ");
+    scanf("%9s", destino);
+
+    switch (removerVoo(v, m, origem, destino)) {
+        case OK:
+            printf(">> Voo removido com sucesso!\n");
+            break;
+
+        case ERRO_NAO_ENCONTRADO:
+            printf(">> Falha: voo ou aeroporto nao encontrado.\n");
+            break;
+
+        default:
+            printf(">> Falha: dados invalidos.\n");
+            break;
+    }
+}
+
 /* =========================================================
  * Main
  * ========================================================= */
@@ -212,7 +237,7 @@ int main(void) {
                 break;
 
             case 3:
-                printf(">> Opcao de remocao de voo ainda nao implementada.\n");
+                opcaoRemoverVoo(aeroportos, malha);
                 break;
 
             case 4:
