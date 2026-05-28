@@ -93,8 +93,44 @@ void opcaoListarVoos(MatrizEsparsa *m, VetorAeroportos *v) {
         printf("Total: %d voo(s).\n", ctx.contador);
 }
 
-int main()
-{
+/* =========================================================
+ * Topico 5 - Listar possíveis trajetos com ou sem baldeação
+ * ========================================================= */
+void listarTrajetos(MatrizEsparsa *m, VetorAeroportos *v) {
+    char origem[10], destino[10];
+
+    //Solicita aeroportos ao usuario e valida se ambos existem e sao diferentes
+    printf("\nCodigo do aeroporto de origem: ");
+    scanf("%9s", origem);
+    printf("Codigo do aeroporto de destino: ");
+    scanf("%9s", destino);
+
+    int indexOrigem = buscarIndiceAeroporto(v, origem);
+    int indexDestino = buscarIndiceAeroporto(v, destino);
+
+    if (indexOrigem < 0 || indexDestino < 0) {
+        printf(">> Um ou ambos os aeroportos nao estao cadastrados.\n");
+        return;
+    }
+    if (indexDestino == indexOrigem) {
+        printf(">> O aeroporto de origem e o de destino sao o mesmo.\n");
+        return;
+    }
+
+    printf("\nTrajetos possiveis de %s (%s) para %s (%s):\n",
+           v->dados[indexOrigem].cidade, v->dados[indexOrigem].codigo,
+           v->dados[indexDestino].cidade, v->dados[indexDestino].codigo);
+    
+    int *visitados = calloc(v->qtd, sizeof(int)); // vai iniciar sempre limpo
+    int *caminho = malloc(v->qtd * sizeof(int));
+
+    buscarRotas(v, indexOrigem, indexDestino, visitados, caminho, 0, v->qtd);
+
+    free(visitados);
+    free(caminho);
+}
+    
+int main(){
     int resposta;
     printf("Escolha uma das opções:\n\n0- Sair\n1- Cadastrar um novo aeroporto\n2- Cadastrar voo (com números de aeroportos)\n3- Remoção de voo (por número)\n4- Listar todos os voos (número e nome da cidade destino) de um aeroporto \n5- Listar possíveis trajetos com ou sem baldeação\n\nResposta: ");
     while (resposta<0 || resposta>5){
