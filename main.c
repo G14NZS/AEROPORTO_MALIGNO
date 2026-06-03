@@ -110,6 +110,35 @@ void opcaoCadastrarVoo(VetorAeroportos *v, MatrizEsparsa *m) {
 }
 
 /* =========================================================
+ * Topico 3 - Remover voos pelo número;
+ * ========================================================= */
+
+void opcaoRemoverVoo(VetorAeroportos *v, MatrizEsparsa *m) {
+    char origem[10];
+    char destino[10];
+
+    printf("\nCodigo do aeroporto de origem: ");
+    scanf("%9s", origem);
+
+    printf("Codigo do aeroporto de destino: ");
+    scanf("%9s", destino);
+
+    switch (removerVoo(v, m, origem, destino)) {
+        case OK:
+            printf(">> Voo removido com sucesso!\n");
+            break;
+
+        case ERRO_NAO_ENCONTRADO:
+            printf(">> Falha: voo ou aeroporto nao encontrado.\n");
+            break;
+
+        default:
+            printf(">> Falha: dados invalidos.\n");
+            break;
+    }
+}
+
+/* =========================================================
  * Topico 4 - Listar voos saindo de um aeroporto
  * ========================================================= */
 void opcaoListarVoos(MatrizEsparsa *m, VetorAeroportos *v) {
@@ -168,31 +197,6 @@ void listarTrajetos(MatrizEsparsa *m, VetorAeroportos *v) {
     */
 
     printf(">> Funcao de trajetos ainda precisa ser conectada aqui.\n");
-}
-
-void opcaoRemoverVoo(VetorAeroportos *v, MatrizEsparsa *m) {
-    char origem[10];
-    char destino[10];
-
-    printf("\nCodigo do aeroporto de origem: ");
-    scanf("%9s", origem);
-
-    printf("Codigo do aeroporto de destino: ");
-    scanf("%9s", destino);
-
-    switch (removerVoo(v, m, origem, destino)) {
-        case OK:
-            printf(">> Voo removido com sucesso!\n");
-            break;
-
-        case ERRO_NAO_ENCONTRADO:
-            printf(">> Falha: voo ou aeroporto nao encontrado.\n");
-            break;
-
-        default:
-            printf(">> Falha: dados invalidos.\n");
-            break;
-    }
 }
 
 /* =========================================================
