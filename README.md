@@ -11,9 +11,15 @@ de uma descrição detalhada do que foi feito
 Inicio: 20:00-21:00  -  13/05/2026
 
 
-## Pedro Henrique Nunes Marchetti 
-### Tópico 5
-20:49 - add de funções de arvore binária. fim-20:49
+\## Pedro Henrique Nunes Marchetti 
+
+\### Tópico 5
+
+13/05 20:49 - add de funções de arvore binária. fim-20:49
+
+27/05 19:50 - add typedef CallbackMatriz fim. fim-20:50
+
+28/05 11:04 - Criação do Topico 5 utilizando o BuscarMatriz fim-16:50
 
 ## Rafael Ferreira Lucietto
 ### Tópicos 1 e 4
