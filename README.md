@@ -8,10 +8,10 @@ de uma descrição detalhada do que foi feito
 
 ## Gianluca Prestello Crugel
 ### Tópicos 2 e 3
-Inicio: 20:00-21:00  -  13/05/2026
-Inicio: 19:45-21:00  -  23/05/2026
-Inicio: 15:00-16:30  -  25/05/2026
-Inicio: 19:25-20:55  -  27/05/2026
+Inicio: 20:00-21:00  -  13/05/2026<br>
+Inicio: 19:45-21:00  -  23/05/2026<br>
+Inicio: 15:00-16:30  -  25/05/2026<br>
+Inicio: 19:25-20:55  -  27/05/2026<br>
 Inicio: 21:30-23:30  -  02/06/2026
 
 
