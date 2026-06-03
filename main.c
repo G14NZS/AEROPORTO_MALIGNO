@@ -161,12 +161,11 @@ void opcaoListarVoos(MatrizEsparsa *m, VetorAeroportos *v) {
  * OBS: essa funcao depende da sua buscarRotas estar implementada.
  * ========================================================= */
 void listarTrajetos(MatrizEsparsa *m, VetorAeroportos *v) {
-    char origem[10];
-    char destino[10];
+    char origem[10], destino[10];
 
+    //Solicita aeroportos ao usuario e valida se ambos existem e sao diferentes
     printf("\nCodigo do aeroporto de origem: ");
     scanf("%9s", origem);
-
     printf("Codigo do aeroporto de destino: ");
     scanf("%9s", destino);
 
@@ -177,8 +176,7 @@ void listarTrajetos(MatrizEsparsa *m, VetorAeroportos *v) {
         printf(">> Um ou ambos os aeroportos nao estao cadastrados.\n");
         return;
     }
-
-    if (indexOrigem == indexDestino) {
+    if (indexDestino == indexOrigem) {
         printf(">> O aeroporto de origem e o de destino sao o mesmo.\n");
         return;
     }
@@ -186,17 +184,14 @@ void listarTrajetos(MatrizEsparsa *m, VetorAeroportos *v) {
     printf("\nTrajetos possiveis de %s (%s) para %s (%s):\n",
            v->dados[indexOrigem].cidade, v->dados[indexOrigem].codigo,
            v->dados[indexDestino].cidade, v->dados[indexDestino].codigo);
+    
+    int *visitados = calloc(v->qtd, sizeof(int)); // vai iniciar sempre limpo
+    int *caminho = malloc(v->qtd * sizeof(int));
 
-    /*
-       Aqui voce chama sua funcao de rotas.
+    buscarRotas(v, indexOrigem, indexDestino, visitados, caminho, 0, v->qtd);
 
-       Exemplo:
-       buscarRotas(m, v, indexOrigem, indexDestino);
-
-       Se a sua buscarRotas tiver outra assinatura, precisa ajustar aqui.
-    */
-
-    printf(">> Funcao de trajetos ainda precisa ser conectada aqui.\n");
+    free(visitados);
+    free(caminho);
 }
 
 /* =========================================================
