@@ -16,9 +16,9 @@ Inicio: 21:30-23:30  -  02/06/2026 (Revisão final da minha parte e da main)
 
 
 
-\## Pedro Henrique Nunes Marchetti 
+## Pedro Henrique Nunes Marchetti 
 
-\### Tópico 5
+### Tópico 5
 
 13/05 20:49 - add de funções de arvore binária. fim-20:49
 
