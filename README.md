@@ -14,7 +14,7 @@ Inicio: 15:00-16:30  -  25/05/2026 (Tópico 3)<br>
 Inicio: 19:25-20:55  -  27/05/2026 (Um pouco da main e ajustando os Tópicos 2 e 3)<br>
 Inicio: 21:30-23:30  -  02/06/2026 (Revisão final da minha parte e da main)
 
-
+<br>
 
 ## Pedro Henrique Nunes Marchetti 
 
@@ -25,6 +25,8 @@ Inicio: 21:30-23:30  -  02/06/2026 (Revisão final da minha parte e da main)
 27/05 19:50 - add typedef CallbackMatriz fim. fim-20:50
 
 28/05 11:04 - Criação do Topico 5 utilizando o BuscarMatriz fim-16:50
+
+<br>
 
 ## Rafael Ferreira Lucietto
 ### Tópicos 1 e 4
