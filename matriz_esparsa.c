@@ -16,8 +16,8 @@ MatrizEsparsa* criarMatriz(void) {
  * Insercao
  * ========================================================= */
 
-/* Insere/atualiza um no na arvore de colunas. Retorna a (possivelmente nova) raiz.
- * 'sucesso' vira 1 se a operacao foi bem-sucedida. */
+/* Insere ou atualiza um no na arvore de colunas. Retorna a raiz.
+ 1 se a operacao foi bem sucedida. */
 static NoCol* inserirCol(NoCol *raiz, int c, void *valor, int *sucesso) {
     if (!raiz) {
         NoCol *novo = (NoCol*) malloc(sizeof(NoCol));
@@ -33,13 +33,13 @@ static NoCol* inserirCol(NoCol *raiz, int c, void *valor, int *sucesso) {
     else if (c > raiz->coluna)
         raiz->dir = inserirCol(raiz->dir, c, valor, sucesso);
     else {
-        raiz->valor = valor;   /* ja existe, so atualiza */
+        raiz->valor = valor;    // se ja existe, so atualiza
         *sucesso = 1;
     }
     return raiz;
 }
 
-/* Insere/acha um no-linha na arvore externa e delega pra inserirCol. */
+// Insere ou acha um no-linha na arvore externa e manda pra inserirCol.
 static NoLinha* inserirLinha(NoLinha *raiz, int l, int c, void *valor, int *sucesso) {
     if (!raiz) {
         NoLinha *novo = (NoLinha*) malloc(sizeof(NoLinha));
