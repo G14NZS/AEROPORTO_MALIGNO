@@ -14,11 +14,11 @@ Inicio: 15:00-16:30  -  25/05/2026 (Tópico 3)<br>
 Inicio: 19:25-20:55  -  27/05/2026 (Um pouco da main e ajustando os Tópicos 2 e 3)<br>
 Inicio: 21:30-23:30  -  02/06/2026 (Revisão final da minha parte e da main)
 
+<br>
 
+## Pedro Henrique Nunes Marchetti 
 
-\## Pedro Henrique Nunes Marchetti 
-
-\### Tópico 5
+### Tópico 5
 
 13/05 20:49 - add de funções de arvore binária. fim-20:49
 
@@ -26,11 +26,13 @@ Inicio: 21:30-23:30  -  02/06/2026 (Revisão final da minha parte e da main)
 
 28/05 11:04 - Criação do Topico 5 utilizando o BuscarMatriz fim-16:50
 
+<br>
+
 ## Rafael Ferreira Lucietto
 ### Tópicos 1 e 4
 
-Inicio de funções básicas matriz esparsa - 20/05/2026 - 09:00
+Inicio de funções básicas matriz esparsa - 20/05/2026 - 09:00<br>
 Finalizado funções básicas 21/05/2026 - 10:00
 
-Inicio Tópico 1 e 4 - 25/05/2026 - 8:40
+Inicio Tópico 1 e 4 - 25/05/2026 - 8:40<br>
 Finalizado tópico 1 e 4 - 27/05/2026 - 16:10
