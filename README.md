@@ -24,3 +24,7 @@ Inicio: 21:30-23:30  -  02/06/2026 (Revisão final da minha parte e da main)
 ### Tópicos 1 e 4
 
 Inicio de funções básicas matriz esparsa - 20/05/2026 - 09:00
+Finalizado funções básicas 21/05/2026 - 10:00
+
+Inicio Tópico 1 e 4 - 25/05/2026 - 8:40
+Finalizado tópico 1 e 4 - 27/05/2026 - 16:10
