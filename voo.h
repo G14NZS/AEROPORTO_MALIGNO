@@ -14,4 +14,8 @@ Status listarVoosSaindoDe(VetorAeroportos *aeroportos,
                           MatrizEsparsa *malha,
                           const char *codigoOrigem);
 
+Status removerVoo(VetorAeroportos *aeroportos,
+                  MatrizEsparsa *malha,
+                  const char *codigoOrigem,
+                  const char *codigoDestino);
 #endif
