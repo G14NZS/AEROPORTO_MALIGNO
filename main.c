@@ -110,7 +110,7 @@ void opcaoCadastrarVoo(VetorAeroportos *v, MatrizEsparsa *m) {
 }
 
 /* =========================================================
- * Topico 3 - Remover voos pelo número;
+ * Topico 3 - Remover voo pela origem e destino 
  * ========================================================= */
 
 void opcaoRemoverVoo(VetorAeroportos *v, MatrizEsparsa *m) {
@@ -158,14 +158,62 @@ void opcaoListarVoos(MatrizEsparsa *m, VetorAeroportos *v) {
 
 /* =========================================================
  * Topico 5 - Listar trajetos
- * OBS: essa funcao depende da sua buscarRotas estar implementada.
  * ========================================================= */
-void listarTrajetos(MatrizEsparsa *m, VetorAeroportos *v) {
-    char origem[10], destino[10];
+void imprimirCaminho(VetorAeroportos *v, int caminho[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        printf("%s", v->dados[caminho[i]].codigo);
 
-    //Solicita aeroportos ao usuario e valida se ambos existem e sao diferentes
+        if (i < tamanho - 1) {
+            printf(" -> ");
+        }
+    }
+
+    printf("\n");
+}
+
+void buscarRotasMatriz(MatrizEsparsa *m,
+                       VetorAeroportos *v,
+                       int atual,
+                       int destino,
+                       int visitados[],
+                       int caminho[],
+                       int posicao,
+                       int *contador)
+{
+    visitados[atual] = 1;
+    caminho[posicao] = atual;
+    posicao++;
+
+    if (atual == destino) {
+        imprimirCaminho(v, caminho, posicao);
+        (*contador)++;
+    } else {
+        for (int i = 0; i < v->qtd; i++) {
+            if (!visitados[i] &&
+                buscarMatriz(m, atual, i) != NULL) {
+
+                buscarRotasMatriz(m,
+                                  v,
+                                  i,
+                                  destino,
+                                  visitados,
+                                  caminho,
+                                  posicao,
+                                  contador);
+            }
+        }
+    }
+
+    visitados[atual] = 0;
+}
+
+void listarTrajetos(MatrizEsparsa *m, VetorAeroportos *v) {
+    char origem[10];
+    char destino[10];
+
     printf("\nCodigo do aeroporto de origem: ");
     scanf("%9s", origem);
+
     printf("Codigo do aeroporto de destino: ");
     scanf("%9s", destino);
 
@@ -176,19 +224,43 @@ void listarTrajetos(MatrizEsparsa *m, VetorAeroportos *v) {
         printf(">> Um ou ambos os aeroportos nao estao cadastrados.\n");
         return;
     }
-    if (indexDestino == indexOrigem) {
+
+    if (indexOrigem == indexDestino) {
         printf(">> O aeroporto de origem e o de destino sao o mesmo.\n");
+        return;
+    }
+
+    int *visitados = calloc(v->qtd, sizeof(int));
+    int *caminho = malloc(v->qtd * sizeof(int));
+
+    if (visitados == NULL || caminho == NULL) {
+        printf(">> Falha: memoria insuficiente.\n");
+
+        free(visitados);
+        free(caminho);
         return;
     }
 
     printf("\nTrajetos possiveis de %s (%s) para %s (%s):\n",
            v->dados[indexOrigem].cidade, v->dados[indexOrigem].codigo,
            v->dados[indexDestino].cidade, v->dados[indexDestino].codigo);
-    
-    int *visitados = calloc(v->qtd, sizeof(int)); // vai iniciar sempre limpo
-    int *caminho = malloc(v->qtd * sizeof(int));
 
-    buscarRotas(v, indexOrigem, indexDestino, visitados, caminho, 0, v->qtd);
+    int contador = 0;
+
+    buscarRotasMatriz(m,
+                  v,
+                  indexOrigem,
+                  indexDestino,
+                  visitados,
+                  caminho,
+                  0,
+                  &contador);
+
+    if (contador == 0) {
+        printf(">> Nenhum trajeto encontrado.\n");
+    } else {
+        printf("Total: %d trajeto(s) encontrado(s).\n", contador);
+    }
 
     free(visitados);
     free(caminho);
