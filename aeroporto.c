@@ -35,27 +35,6 @@ int buscarIndiceAeroporto(VetorAeroportos *v, const char *codigo) {
     return -1;
 }
 
-void buscarRotas(VetorAeroportos *v, int origem, int destino, int *visitados, int *rota, int nivel, int totalAeroportos){
-    visitados[origem] = 1;
-    rota[nivel] = origem;
-
-    if(origem == destino){
-        printf("Rota: ");
-        for(int i = 0; i <= nivel; i++){
-            printf("%s -> ", v->dados[rota[i]].codigo);
-        }
-        printf("\n");
-    }
-    else{
-        for(int i = 0; i < totalAeroportos; i++){
-            if(!visitados[i]){
-                buscarRotas(v, i, destino, visitados, rota, nivel + 1, totalAeroportos);
-            }
-        }
-    }   
-    visitados[origem] = 0; 
-}
-
 /* =========================================================
  * Cadastro
  * ========================================================= */
