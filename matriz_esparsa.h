@@ -1,63 +1,56 @@
-#ifndef AEROPORTO_H
-#define AEROPORTO_H
+#ifndef MATRIZ_ESPARSA_H
+#define MATRIZ_ESPARSA_H
 
-/* =========================================================
- * Codigos de retorno usados pelas operacoes do projeto.
- * Definidos aqui porque sao compartilhados entre modulos.
- * ========================================================= */
-typedef enum {
-    OK,
-    ERRO_DUPLICADO,
-    ERRO_NAO_ENCONTRADO,
-    ERRO_MEMORIA,
-    ERRO_INVALIDO
-} Status;
+/* ---------- Estruturas ----------
+ * Arvore externa: indexada por LINHA.
+ * Cada no-linha guarda a raiz de uma arvore interna de COLUNAS.
+ * Cada no-coluna guarda o valor (void* para ser generico).
+ */
 
-/* =========================================================
- * Estrutura de um aeroporto.
- * codigo[4]: 3 letras + '\0' (ex: "CNF")
- * cidade[50]: nome da cidade
- * ========================================================= */
+typedef struct NoCol {
+    int coluna;
+    void *valor;
+    struct NoCol *esq, *dir;
+} NoCol;
+
+typedef struct NoLinha {
+    int linha;
+    NoCol *colunas;              /* raiz da arvore de colunas dessa linha */
+    struct NoLinha *esq, *dir;
+} NoLinha;
+
 typedef struct {
-    char codigo[4];
-    char cidade[50];
-} Aeroporto;
+    NoLinha *raiz;               /* raiz da arvore de linhas */
+} MatrizEsparsa;
 
-/* =========================================================
- * Vetor dinamico de aeroportos.
- * dados      : array alocado dinamicamente
- * qtd        : numero de aeroportos cadastrados
- * capacidade : tamanho atual alocado (qtd <= capacidade)
- * ========================================================= */
-typedef struct {
-    Aeroporto *dados;
-    int qtd;
-    int capacidade;
-} VetorAeroportos;
+/* ---------- Operacoes basicas ---------- */
 
-/* =========================================================
- * Operacoes
- * ========================================================= */
+MatrizEsparsa* criarMatriz(void);
 
-/* Cria um vetor vazio. Retorna NULL em caso de falha de memoria. */
-VetorAeroportos* criarVetor(void);
+/* Insere ou atualiza o valor em (linha, coluna).
+ * Retorna 1 em sucesso, 0 em falha. */
+int inserirMatriz(MatrizEsparsa *m, int linha, int coluna, void *valor);
 
-/* Libera o vetor e seus dados internos. */
-void liberarVetor(VetorAeroportos *v);
+/* Retorna o valor em (linha, coluna), ou NULL se vazia. */
+void* buscarMatriz(MatrizEsparsa *m, int linha, int coluna);
 
-/* Busca um aeroporto pelo codigo.
- * Retorna o indice no vetor, ou -1 se nao encontrar. */
-int buscarIndiceAeroporto(VetorAeroportos *v, const char *codigo);
+/* Remove o elemento em (linha, coluna).
+ * Retorna 1 se removeu, 0 se nao existia.
+ * Obs.: nao libera o conteudo apontado por 'valor'. */
+int removerMatriz(MatrizEsparsa *m, int linha, int coluna);
 
-/* Cadastra um novo aeroporto.
- * Cresce o vetor automaticamente se necessario.
- * Retorna:
- *   OK              -> cadastrado com sucesso
- *   ERRO_DUPLICADO  -> ja existe aeroporto com esse codigo
- *   ERRO_INVALIDO   -> codigo ou cidade vazios/nulos
- *   ERRO_MEMORIA    -> falha ao alocar memoria */
-Status cadastrarAeroporto(VetorAeroportos *v,
-                          const char *codigo,
-                          const char *cidade);
+/* Libera toda a estrutura (mas nao os 'valor' apontados). */
+void liberarMatriz(MatrizEsparsa *m);
+
+/* ---------- Iteracao ----------
+ * Percorre todos os elementos nao-nulos em ordem (linha, coluna crescentes),
+ * chamando 'callback' para cada um. 'contexto' e passado adiante sem modificacao
+ * (util pra passar vetores, contadores, arquivos, etc).
+ */
+typedef void (*CallbackMatriz)(int linha, int coluna, void *valor, void *contexto);
+void percorrerMatriz(MatrizEsparsa *m, CallbackMatriz cb, void *contexto);
+
+/* Percorre apenas os elementos de UMA linha especifica. */
+void percorrerLinha(MatrizEsparsa *m, int linha, CallbackMatriz cb, void *contexto);
 
 #endif
