@@ -49,8 +49,6 @@ void liberarVetor(VetorAeroportos *v);
  * Retorna o indice no vetor, ou -1 se nao encontrar. */
 int buscarIndiceAeroporto(VetorAeroportos *v, const char *codigo);
 
-void buscarRotas(VetorAeroportos *v, int origem, int destino, int *visitados, int *rota, int nivel, int totalAeroportos);
-
 /* Cadastra um novo aeroporto.
  * Cresce o vetor automaticamente se necessario.
  * Retorna:
